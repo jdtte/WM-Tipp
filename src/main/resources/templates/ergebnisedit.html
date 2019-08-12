@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="fragments/header :: head" />
+<head>
+<style>
+.row {
+	width: 180%;
+}
+
+.btn {
+	margin-top: 10px;
+}
+
+.btn-success, .btn-succes:hover, .btn-succes:active, .btn-succes:visited
+	{
+	background-color: #3c7018 !important;
+}
+
+#indent {
+	width: 37%;
+}
+</style>
+</head>
+
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+
+	<!-- removed errors for now -->
+
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>
+					Spiel <span
+						th:text="${spiel.heimMannschaft}+':'+${spiel.gastMannschaft}" />
+				</h2>
+			</div>
+		</div>
+
+
+
+		<form id="formName" th:action="@{/ergebnisse}" th:object="${spiel}"
+			method="post">
+
+
+			<div class="row">
+				<div id="indent">
+					<div class="col-sm-1"></div>
+				</div>
+
+
+				<div class="col-sm-1">
+					<div class="input-group" style="margin: 10px;">
+
+
+
+
+						<input type="text" class="form-control form-control-lg"
+							maxlength="2" th:field="*{toreHeimMannschaft}" /> <span
+							class="input-group-addon"
+							style="border-left: 0; border-right: 0;"><b>:</b></span> <input
+							type="hidden" th:field="*{tippbar}" /> <input type="hidden"
+							th:field="*{gastMannschaft}" /> <input type="hidden"
+							th:field="*{heimMannschaft}" /> <input type="text"
+							class="form-control form-control-lg" maxlength="2"
+							th:field="*{toreGastMannschaft}" /> <input type="hidden"
+							th:field="*{id}" /> <input type="hidden" th:field="*{vorbei}" />
+
+
+					</div>
+				</div>
+
+
+				<div class="col-md">
+					<input type="submit" value="Submit" class="btn btn-success" />
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+
+
+	<th:block th:replace="fragments/header :: scripts">
+</body>
+</html>

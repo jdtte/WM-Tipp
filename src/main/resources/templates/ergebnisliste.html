@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/header :: head" />
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Anstoß</th>
+							<th scope="col">Heim</th>
+							<th scope="col">Gast</th>
+							<th scope="col">Ergebnis</th>
+							<th scope="col"></th>
+							<th scope="col">Tippabgabe</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+
+					<tr th:each="spiel : ${spiele}">
+						<td th:text="${spiel.getSpielDateGermanString()}" />
+						<td th:text="${spiel.heimMannschaft}" />
+						<td th:text="${spiel.gastMannschaft}" />
+						<td th:text="${spiel.ergebnis}" />
+						<td><form method="GET"
+								th:action="@{/ergebnisse/}+${spiel.id}">
+								<button type="submit" name="submit" value="value"
+									class="btn btn-primary btn-sm button-toggle">
+									<span class="glyphicon glyphicon-edit" aria-hidden="true">Ändern</span>
+								</button>
+							</form></td>
+						<td>
+							<form method="POST"
+								th:action="@{/ergebnisse/}+${spiel.id}+'/tippbar'">
+								<button th:unless="${spiel.tippbar}"
+									th:disabled="${spiel.vorbei}" type="submit" name="submit"
+									value="value" class="btn btn-sm btn-danger button-toggle"
+									th:text="Geschlossen" />
+								</button>
+								
+								<button th:if="${spiel.tippbar}" type="submit" name="submit"
+									value="value" class="btn btn-sm btn-success button-toggle"
+									th:text="Tippbar" />
+								</button>
+							</form>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<th:block th:replace="fragments/header :: scripts">
+</body>
+</html>

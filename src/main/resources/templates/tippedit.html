@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="fragments/header :: head" />
+<head>
+<style>
+.row {
+	width: 180%;
+}
+
+.btn {
+	margin-top: 10px;
+}
+
+.btn-success, .btn-succes:hover, .btn-succes:active, .btn-succes:visited
+	{
+	background-color: #3c7018 !important;
+}
+
+#indent {
+	width: 37%;
+}
+</style>
+</head>
+
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+		<div class="span12">
+			<div th:if="${negativfehler}"
+				class="alert alert-danger alert-dismissible col-md-8" role="alert">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>Fehler!</strong> Der eingegebene Tipp ist negativ.
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="span12">
+			<div th:if="${invalidtippfehler}"
+				class="alert alert-danger alert-dismissible col-md-8" role="alert">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>Fehler!</strong> Der eingegebene Tipp ist ungültig.
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="span12">
+			<div th:if="${spielNichtTippbarFehler}"
+				class="alert alert-danger alert-dismissible col-md-8" role="alert">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<strong>Fehler!</strong> Der Tipp wird nicht akzeptiert, weil das
+				Spiel nicht Tippbar ist.
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>
+					Tipp <span
+						th:text="${spiel.heimMannschaft}+':'+${spiel.gastMannschaft}" />
+				</h2>
+			</div>
+		</div>
+
+
+
+		<form id="formName" th:action="@{/tipps/}+${spiel.id}"
+			th:object="${tipp}" method="post">
+
+			<div class="row">
+				<div id="indent">
+					<div class="col-sm-1"></div>
+				</div>
+
+				<div class="col-sm-1">
+					<div class="input-group" style="margin: 10px;">
+
+
+
+
+						<input type="text" class="form-control form-control-lg"
+							maxlength="2" th:field="*{toreHeimMannschaft}" /> <span
+							class="input-group-addon"
+							style="border-left: 0; border-right: 0;"><b>:</b></span> <input
+							type="text" class="form-control form-control-lg" maxlength="2"
+							th:field="*{toreGastMannschaft}" />
+
+					</div>
+				</div>
+				<div class="col-md">
+					<input type="submit" value="Tippen" class="btn btn-success" />
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+
+
+	<th:block th:replace="fragments/header :: scripts">
+</body>
+</html>

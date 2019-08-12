@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/header :: head" />
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Anstoßzeit</th>
+							<th scope="col">Heim</th>
+							<th scope="col">Gast</th>
+							<th scope="col">Tipp</th>
+							<th scope="col"></th>
+							<th scope="col">Ergebnis</th>
+							<th scope="col">Punkte</th>
+						</tr>
+					</thead>
+					<tr th:each="tipp : ${tipps}">
+						<td th:text="${tipp.anstossZeit}"></td>
+						<td th:text="${tipp.heimMannschaft}"></td>
+						<td th:text="${tipp.gastMannschaft}">id</td>
+						<td th:text="${tipp.tipp}" />
+						<td><form method="GET" th:action="@{/tipps/}+${tipp.spielId}">
+								<button th:disabled="${!tipp.tippbar}" type="submit"
+									name="submit" value="value"
+									class="btn btn-primary btn-sm button-toggle">
+									<span class="glyphicon glyphicon-edit" aria-hidden="true">Tippen</span>
+								</button>
+							</form></td>
+						<td th:text="${tipp.ergebnis}" />
+						<td th:if=${tipp.vorbei} th:text="${tipp.punkte}" />
+					</tr>
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+	<th:block th:replace="fragments/header :: scripts">
+</body>
+</html>

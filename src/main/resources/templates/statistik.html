@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/header :: head" />
+
+<head>
+<style>
+span {
+	display: block;
+	width: 100%;
+	text-align: right;
+}
+</style>
+</head>
+
+
+
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+
+	<!-- wichtiger machen, evt farbe dunkler und größer  -->
+
+	<div class="container">
+		<div class="col-lg-5">
+			<h2>Statistiken</h2>
+		</div>
+	</div>
+
+
+
+	<!-- block 1 -->
+	<div class="container">
+		<div class="col-lg-5">
+			<div class="well">
+
+				<div class="row">
+					<div class="col-md-10">
+						<b>Gesamte Punkte</b>
+					</div>
+					<div class="col-md-2">
+						<b><span th:text="${gesamtPunkte}">-</span></b>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+	<!--Block 2 -->
+	<div class="container">
+		<div class="col-md-5">
+			<div class="well">
+				<div class="row">
+					<div class="col-md-10">Offene Tipps</div>
+					<div class="col-md-2">
+						<span th:text="${anzahlOffenerTipps}">-</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-10">Geschlossene Tipps</div>
+					<div class="col-md-2">
+						<span th:text="${anzahlGeschlossenerTipps}">-</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-10">
+						<b>Abgegebene Tipps gesamt</b>
+					</div>
+					<div class="col-md-2">
+						<b><span th:text="${anzahlTipps}">-</span></b>
+					</div>
+					</b>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<!--Block 3 -->
+	<div class="container">
+		<div class="col-lg-5">
+			<div class="well">
+
+				<div class="row">
+					<div class="col-md-10">Richtige Tipps</div>
+					<div class="col-md-2">
+						<span th:text="${anzahlRichtigerTipps}">-</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-10">Falsche Tipps</div>
+					<div class="col-md-2">
+						<span th:text="${anzahlFalscherTipps}">-</span>
+					</div>
+				</div>
+
+
+
+				<div class="row">
+					<div class="col-md-10">
+						<b>Winrate in %</b>
+					</div>
+					<div class="col-md-2">
+						<b><span th:text="${winrate}">-</span></b>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-10">
+						<b>Ø Punkte pro Tipp</b>
+					</div>
+					<div class="col-md-2">
+						<b><span th:text="${AveragePunktePerTipp}">-</span></b>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- gesamt punkte, evt mit unterschiedlichen systemen, wenn welche kommen sollten -->
+
+
+	<th:block th:replace="fragments/header :: scripts">
+</body>
+</html>

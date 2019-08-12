@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/header :: head" />
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	<div th:if="${adminfehler}"
+		class="alert alert-danger alert-dismissible col-md-6" role="alert">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<strong>Fehler!</strong> Admin kann nicht überschrieben werden.
+	</div>
+	<!-- needed bc of col-md, else Mitspieler moves up-->
+	<div th:if="${adminfehler}">
+		<br> <br> <br>
+	</div>
+
+	<div th:if="${userfehler}"
+		class="alert alert-warning alert-dismissible col-md-6" role="alert">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<strong>Warnung!</strong> Nutzer war bereits vorhanden und wurde
+		überschrieben.
+	</div>
+	<!-- needed bc of col-md, else Mitspieler moves up-->
+	<div th:if="${userfehler}">
+		<br> <br> <br>
+	</div>
+
+	<h2>Mitspieler</h2>
+
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Name</th>
+			</tr>
+		</thead>
+		<tr th:each="m : ${mitspieler}">
+			<td th:text="${m.login} " />
+		</tr>
+	</table>
+
+
+	<div th:if="${administration}">
+		<h2>Mitspieler ergänzen</h2>
+		<form action="#" th:action="@{/mitspieler}"
+			th:object="${neuerMitspieler}" method="post">
+			<p>
+				Anzeigename: <input type="text" th:field="*{anzeigeName}" />
+			</p>
+			<p>
+				Name: <input type="text" th:field="*{login}" />
+			</p>
+			<p>
+				Password: <input type="text" th:field="*{password}" />
+			</p>
+			<p>
+				<input type="submit" value="Submit" />
+			</p>
+		</form>
+	</div>
+
+	<th:block th:replace="fragments/header :: scripts">
+</body>
+</html>
